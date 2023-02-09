@@ -9,7 +9,8 @@ export const Register = sequelize.define('registers', {
         autoIncrement: true,
     },
     timestamp: {
-        type: DataTypes.TIME
+        type: DataTypes.TIME,
+        allowNull: false,
     },
     img1: {
         type: DataTypes.BLOB
@@ -43,10 +44,10 @@ export const Register = sequelize.define('registers', {
     timestamps: false
 });
 Service.hasOne(Register, {
-    foreignKey: 'serviceID',
+    foreignKey: {allowNull:false, name:'serviceID'},
     sourceKey: 'id',
 });
 Register.belongsTo(Service, {
-    foreignKey: 'serviceID',
+    foreignKey: {allowNull:false, name:'serviceID'},
     targerID: 'id'
 });

@@ -11,25 +11,32 @@ export const Service = sequelize.define('services', {
     },
     state: {
         type: DataTypes.INTEGER,
-        defaultValue: 0
+        defaultValue: 0,
+        allowNull: false,
     },
     init_latitude: {
-        type: DataTypes.DECIMAL
+        type: DataTypes.DECIMAL,
+        allowNull: false,
     },
     init_longitude: {
-        type: DataTypes.DECIMAL
+        type: DataTypes.DECIMAL,
+        allowNull: false,
     },
     last_latitude: {
-        type: DataTypes.DECIMAL
+        type: DataTypes.DECIMAL,
+        allowNull: true,
     },
     last_longitude: {
-        type: DataTypes.DECIMAL
+        type: DataTypes.DECIMAL,
+        allowNull: true,
     },
     init_timestamp: {
-        type: DataTypes.TIME
+        type: DataTypes.TIME,
+        allowNull: false,
     },
     last_timestamp: {
-        type: DataTypes.TIME
+        type: DataTypes.TIME,
+        allowNull: true,
     },
 },
     {
@@ -37,28 +44,29 @@ export const Service = sequelize.define('services', {
     });
 
     User.hasOne( Service, {
-        foreignKey: 'userID',
+        foreignKey:{allowNull:false, name: 'userID'},
         sourceKey: 'id',
     });
     Service.belongsTo(User,{
-        foreignKey: 'userID',
+        foreignKey:{allowNull:false, name: 'userID'},
         targerID: 'id'
     });
 
     Station.hasOne( Service, {
-        foreignKey: 'stationID',
+        foreignKey:{allowNull:false, name: 'stationID'},
         sourceKey: 'id',
     });
-    Station.belongsTo(Service,{
-        foreignKey: 'stationID',
+    
+    Service.belongsTo(Station,{
+        foreignKey:{allowNull:false, name: 'stationID'},
         targerID: 'id'
     });
 
     User.hasOne( Service, {
-        foreignKey: 'coordinatorID',
+        foreignKey:{allowNull:false, name: 'coordinatorID'},
         sourceKey: 'id',
     });
     Service.belongsTo(User,{
-        foreignKey: 'coordinatorID',
+        foreignKey:{allowNull:false, name: 'coordinatorID'},
         targerID: 'id'
     });

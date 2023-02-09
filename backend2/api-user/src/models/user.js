@@ -6,61 +6,51 @@ import { Station } from './station.js';
 
 export const User = sequelize.define('users', {
     id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.BIGINT,
         primaryKey: true,
-
     },
     password: {
         type: DataTypes.STRING,
-
+        allowNull: false,
     },
     name1:
     {
         type: DataTypes.STRING,
-
+        allowNull: false,
     },
     name2: {
         type: DataTypes.STRING,
-
+        allowNull: true,
     },
     surname1: {
         type: DataTypes.STRING,
-
+        allowNull: false,
     },
-    surnam2: {
+    surname2: {
         type: DataTypes.STRING,
-
+        allowNull: true,
     },
     profile: {
         type: DataTypes.INTEGER,
-        defaultValue: 0
-
+        defaultValue: 0,
+        allowNull: false,
     },
    
     active: {
         type: DataTypes.BOOLEAN,
         defaultValue: true,
+        allowNull: false,
     },
 }, {
     timestamps: false,
 });
 
-Station.hasMany( User, {
-    foreignKey: 'stationID',
-    sourceKey: 'id',
-});
-
-User.belongsTo(Station,{
-    foreignKey: 'stationID',
-    targerID: 'id'
-});
-
-Schedule.hasOne( User, {
+Schedule.hasMany( User, {
     foreignKey: 'scheduleID',
     sourceKey: 'id',
 });
 
-User.belongsTo(Schedule,{
-    foreignKey: 'scheduleID',
+Schedule.belongsTo(User,{
+    foreignKey: {allowNull:false, name: 'userID'},
     targerID: 'id'
 });

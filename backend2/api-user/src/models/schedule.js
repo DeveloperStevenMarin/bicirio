@@ -10,21 +10,23 @@ export const Schedule = sequelize.define('schedules', {
     },
     coordinator: {
         type: DataTypes.INTEGER,
-
+        allowNull: false,
     },
     assign_in_time: {
-        type: DataTypes.TIME
+        type: DataTypes.TIME,
+        allowNull: false,
     },
     assign_out_time: {
-        type: DataTypes.TIME
+        type: DataTypes.TIME,
+        allowNull: false,
     },
     break_time: {
-        type: DataTypes.TIME
+        type: DataTypes.TIME,
+        allowNull: false,
     },
     timestamp: {
         type: DataTypes.TIME
     },
-
 }, {
     timestamps: false
 });
