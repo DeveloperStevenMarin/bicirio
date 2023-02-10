@@ -31,3 +31,12 @@ export const Schedule = sequelize.define('schedules', {
     timestamps: false
 });
 
+Schedule.hasMany( User, {
+    foreignKey: 'scheduleID',
+    sourceKey: 'id',
+});
+
+Schedule.belongsTo(User,{
+    foreignKey: {allowNull:false, name: 'userID'},
+    targerID: 'id'
+});

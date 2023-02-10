@@ -1,7 +1,6 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../database/database.js';
 import { Schedule } from './schedule.js';
-import { Station } from './station.js';
 
 
 export const User = sequelize.define('users', {
@@ -45,12 +44,3 @@ export const User = sequelize.define('users', {
     timestamps: false,
 });
 
-Schedule.hasMany( User, {
-    foreignKey: 'scheduleID',
-    sourceKey: 'id',
-});
-
-Schedule.belongsTo(User,{
-    foreignKey: {allowNull:false, name: 'userID'},
-    targerID: 'id'
-});

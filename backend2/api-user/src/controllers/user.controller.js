@@ -1,3 +1,4 @@
+import { In_time } from '../models/in_time.js';
 import { User } from '../models/user.js';
 import { Users_Stations } from '../models/users_stations.js';
 
@@ -47,6 +48,7 @@ export const createUser = async (req, res) => {
             surname1,
             surname2
         });
+        res.json(newUser);
     } catch (error) {
         return res.status(500).json({ message: error.message });
     }
@@ -144,6 +146,7 @@ export const updateUserActive = async (req, res) => {
     }
 }
 
+//Obtener las estaciones asignadas a este usuario
 export const getUserStations = async (req, res) =>{
     try {
         const { id } = req.params;
@@ -153,6 +156,21 @@ export const getUserStations = async (req, res) =>{
             }
         });
         res.json(userStations)
+    } catch (error) {
+        return res.status(500).json({message: error.message})
+    }
+   
+}
+
+export const getIn_Times = async (req, res) =>{
+    try {
+        const { id } = req.params;
+        const in_times = await In_time.findAll({
+            where: {
+                userID: id
+            }
+        });
+        res.json(in_times)
     } catch (error) {
         return res.status(500).json({message: error.message})
     }
