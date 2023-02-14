@@ -1,6 +1,5 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../database/database.js';
-import { Schedule } from './schedule.js';
 
 
 export const User = sequelize.define('users', {

@@ -10,7 +10,7 @@ export const Out_time = sequelize.define('out_times', {
         autoIncrement: true
     },
     timestamp: {
-        type: DataTypes.TIME,
+        type: "timestamp",
         allowNull: false,
     },
 }, {

@@ -18,7 +18,7 @@ export const Location = sequelize.define('locations', {
         allowNull: false,
     },
     timestamp: {
-        type: DataTypes.TIME,
+        type: "timestamp",
         allowNull: false,
     }
 }, {

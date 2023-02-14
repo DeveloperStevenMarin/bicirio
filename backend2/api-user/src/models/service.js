@@ -31,11 +31,11 @@ export const Service = sequelize.define('services', {
         allowNull: true,
     },
     init_timestamp: {
-        type: DataTypes.TIME,
+        type: "timestamp",
         allowNull: false,
     },
     last_timestamp: {
-        type: DataTypes.TIME,
+        type: "timestamp",
         allowNull: true,
     },
 },

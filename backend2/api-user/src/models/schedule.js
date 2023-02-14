@@ -25,8 +25,8 @@ export const Schedule = sequelize.define('schedules', {
         allowNull: false,
     },
     timestamp: {
-        type: DataTypes.TIME
-    },
+        type: "timestamp",
+    },  
 }, {
     timestamps: false
 });

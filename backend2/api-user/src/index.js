@@ -8,7 +8,7 @@ import { sequelize } from './database/database.js';
 // import '../src/models/register.js';
 // import '../src/models/in_time.js';
 // import '../src/models/out_time.js';
-// import '../src/models/schedule.js';
+//import '../src/models/schedule.js';
 // import '../src/models/users_stations.js'
 
 
@@ -16,7 +16,7 @@ import { sequelize } from './database/database.js';
 
 async function main() {
     try {
-        await sequelize.sync({ force: false });
+        await sequelize.sync({ force: true });
         console.log('Connection has been established successfully.');
         app.listen(3000);
         console.log('Server is listening on port: ', 3000);

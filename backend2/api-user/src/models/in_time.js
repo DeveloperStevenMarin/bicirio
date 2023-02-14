@@ -10,7 +10,7 @@ export const In_time = sequelize.define('in_times', {
         autoIncrement: true
     },
     timestamp: {
-        type: DataTypes.TIME,
+        type: "timestamp",
         allowNull: false,
     },
 }, {

@@ -9,7 +9,7 @@ export const Register = sequelize.define('registers', {
         autoIncrement: true,
     },
     timestamp: {
-        type: DataTypes.TIME,
+        type: "timestamp",
         allowNull: false,
     },
     img1: {

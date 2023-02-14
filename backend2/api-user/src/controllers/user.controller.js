@@ -1,4 +1,5 @@
 import { In_time } from '../models/in_time.js';
+import { Out_time } from '../models/out_time.js'
 import { User } from '../models/user.js';
 import { Users_Stations } from '../models/users_stations.js';
 
@@ -6,7 +7,7 @@ import { Users_Stations } from '../models/users_stations.js';
 export const getUsers = async (req, res) => {
 
     try {
-        const users = await User.findAll()
+        const users = await User.findAll();
         res.json(users);
 
     } catch (error) {
@@ -162,6 +163,7 @@ export const getUserStations = async (req, res) =>{
    
 }
 
+//Obtener tiempos de entrada o logueo del usuario
 export const getIn_Times = async (req, res) =>{
     try {
         const { id } = req.params;
@@ -171,6 +173,23 @@ export const getIn_Times = async (req, res) =>{
             }
         });
         res.json(in_times)
+    } catch (error) {
+        return res.status(500).json({message: error.message})
+    }
+   
+}
+
+
+//Obtener tiempos de salida o deslogueo del usuario
+export const getOut_Times = async (req, res) =>{
+    try {
+        const { id } = req.params;
+        const out_times = await Out_time.findAll({
+            where: {
+                userID: id
+            }
+        });
+        res.json(out_times)
     } catch (error) {
         return res.status(500).json({message: error.message})
     }
