@@ -1,4 +1,4 @@
-import { DataTypes } from "sequelize";
+import { DataTypes, Sequelize } from "sequelize";
 import { sequelize } from '../database/database.js'
 import { Station } from "./station.js";
 import { User } from "./user.js";
@@ -31,11 +31,12 @@ export const Service = sequelize.define('services', {
         allowNull: true,
     },
     init_timestamp: {
-        type: "timestamp",
-        allowNull: false,
+        type: DataTypes.DATE,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        allowNull: false
     },
     last_timestamp: {
-        type: "timestamp",
+        type: DataTypes.DATE({ onUpdate: true, notNull: true }),
         allowNull: true,
     },
 },

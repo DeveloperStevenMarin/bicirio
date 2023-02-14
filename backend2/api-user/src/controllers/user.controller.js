@@ -2,6 +2,7 @@ import { In_time } from '../models/in_time.js';
 import { Out_time } from '../models/out_time.js'
 import { User } from '../models/user.js';
 import { Users_Stations } from '../models/users_stations.js';
+import { Location } from '../models/location.js'
 
 //Obtener Usuarios
 export const getUsers = async (req, res) => {
@@ -129,7 +130,6 @@ export const updateUserSchedule = async (req, res) => {
     }
 }
 
-
 //Actualizar estado de activo o desactivo del usuario
 export const updateUserActive = async (req, res) => {
     try {
@@ -164,7 +164,7 @@ export const getUserStations = async (req, res) =>{
 }
 
 //Obtener tiempos de entrada o logueo del usuario
-export const getIn_Times = async (req, res) =>{
+export const getUserIn_Times = async (req, res) =>{
     try {
         const { id } = req.params;
         const in_times = await In_time.findAll({
@@ -179,9 +179,8 @@ export const getIn_Times = async (req, res) =>{
    
 }
 
-
 //Obtener tiempos de salida o deslogueo del usuario
-export const getOut_Times = async (req, res) =>{
+export const getUserOut_Times = async (req, res) =>{
     try {
         const { id } = req.params;
         const out_times = await Out_time.findAll({
@@ -190,6 +189,22 @@ export const getOut_Times = async (req, res) =>{
             }
         });
         res.json(out_times)
+    } catch (error) {
+        return res.status(500).json({message: error.message})
+    }
+   
+}
+
+//Obtener todas las ubicaciones de el usuario
+export const getUserLocations = async (req, res) =>{
+    try {
+        const { id } = req.params;
+        const locations = await Location.findAll({
+            where: {
+                userID: id
+            }
+        });
+        res.json(locations)
     } catch (error) {
         return res.status(500).json({message: error.message})
     }

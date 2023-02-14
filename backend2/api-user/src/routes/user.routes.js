@@ -9,8 +9,9 @@ import {
     updateUserStations,
     updateUserSchedule,
     getUserStations,
-    getIn_Times,
-    getOut_Times
+    getUserIn_Times,
+    getUserOut_Times,
+    getUserLocations
 } from '../controllers/user.controller.js'
 
 const router = Router();
@@ -25,6 +26,7 @@ router.put('/user/Schedule/:id', updateUserSchedule);   //Actualizar el horario 
 router.put('/user/active/:id', updateUserActive);   //Actualizar el estado del usuario
 
 router.get('/user/:id/stations', getUserStations);     //Obtener estaciones de un usuario
-router.get('/user/:id/in_times', getIn_Times);      //Obtener tiempos de entrada o logueo del usuario
-router.get('/user/:id/out_times', getOut_Times);      //Obtener tiempos de salida o deslogueo del usuario
+router.get('/user/:id/in_times', getUserIn_Times);      //Obtener tiempos de entrada o logueo del usuario
+router.get('/user/:id/out_times', getUserOut_Times);      //Obtener tiempos de salida o deslogueo del usuario
+router.get('/user/:id/locations', getUserLocations);      //Obtener todas las ubicaciones de el usuario
 export default router;

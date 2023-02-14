@@ -11,7 +11,11 @@ export const Station = sequelize.define('stations', {
     name: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true
+        unique: true,
+        validate:{
+            isAlpha: true,
+            len: [3, 20],
+        }
     },
     latitude: {
         type: DataTypes.DECIMAL,

@@ -1,4 +1,4 @@
-import { DataTypes } from "sequelize";
+import { DataTypes, Sequelize } from "sequelize";
 import { sequelize } from '../database/database.js'
 import { Schedule } from "./schedule.js";
 import { User } from "./user.js";
@@ -10,8 +10,9 @@ export const In_time = sequelize.define('in_times', {
         autoIncrement: true
     },
     timestamp: {
-        type: "timestamp",
-        allowNull: false,
+        type: DataTypes.DATE,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        allowNull: false
     },
 }, {
     timestamps: false

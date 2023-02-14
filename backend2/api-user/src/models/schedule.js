@@ -1,4 +1,4 @@
-import { DataTypes } from "sequelize";
+import { DataTypes, Sequelize } from "sequelize";
 import { sequelize } from '../database/database.js'
 import { User } from "./user.js";
 
@@ -25,7 +25,9 @@ export const Schedule = sequelize.define('schedules', {
         allowNull: false,
     },
     timestamp: {
-        type: "timestamp",
+        type: DataTypes.DATE,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        allowNull: false
     },  
 }, {
     timestamps: false
