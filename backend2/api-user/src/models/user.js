@@ -1,66 +1,72 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../database/database.js';
-import { Schedule } from './schedule.js';
-import { Station } from './station.js';
 
 
 export const User = sequelize.define('users', {
     id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.BIGINT,
         primaryKey: true,
-
+        validate:{
+            len: [8,12],
+            isNumeric: true, 
+        }
     },
     password: {
         type: DataTypes.STRING,
-
+        allowNull: false,
+        validate:{
+            len: [4, 20],
+            notEmpty: true, 
+        }
     },
     name1:
     {
         type: DataTypes.STRING,
-
+        allowNull: false,
+        validate:{
+            isAlpha: true,
+            len: [3, 20],
+        }
     },
     name2: {
         type: DataTypes.STRING,
-
+        allowNull: true,
+        validate:{
+            isAlpha: true,
+            len: [3, 20],
+        }
     },
     surname1: {
         type: DataTypes.STRING,
-
+        allowNull: false,
+        validate:{
+            isAlpha: true,
+            len: [3, 20],
+        }
     },
-    surnam2: {
+    surname2: {
         type: DataTypes.STRING,
-
+        allowNull: true,
+        validate:{
+            isAlpha: true,
+            len: [3, 20],
+        }
     },
     profile: {
         type: DataTypes.INTEGER,
-        defaultValue: 0
-
+        defaultValue: 0,
+        allowNull: false,
+        validate:{
+            isInt: true,
+        }
     },
    
     active: {
         type: DataTypes.BOOLEAN,
         defaultValue: true,
+        allowNull: false,
     },
 }, {
     timestamps: false,
 });
 
-Station.hasMany( User, {
-    foreignKey: 'stationID',
-    sourceKey: 'id',
-});
-
-User.belongsTo(Station,{
-    foreignKey: 'stationID',
-    targerID: 'id'
-});
-
-Schedule.hasOne( User, {
-    foreignKey: 'scheduleID',
-    sourceKey: 'id',
-});
-
-User.belongsTo(Schedule,{
-    foreignKey: 'scheduleID',
-    targerID: 'id'
-});

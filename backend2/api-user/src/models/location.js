@@ -1,4 +1,4 @@
-import { DataTypes } from "sequelize";
+import { DataTypes, Sequelize } from "sequelize";
 import { sequelize } from "../database/database.js";
 import { Service } from "./service.js";
 import { User } from "./user.js";
@@ -10,31 +10,35 @@ export const Location = sequelize.define('locations', {
         autoIncrement: true,
     },
     latitude: {
-        type: DataTypes.DECIMAL
+        type: DataTypes.DECIMAL,
+        allowNull: false,
     },
     longitude: {
         type: DataTypes.DECIMAL,
+        allowNull: false,
     },
     timestamp: {
-        type: DataTypes.TIME
+        type: DataTypes.DATE,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        allowNull: false
     }
 }, {
     timestamps: false
 });
-User.hasOne(Location, {
-    foreignKey: 'userID',
+User.hasMany(Location, {
+    foreignKey: {allowNull: false, name: 'userID'},
     sourceKey: 'id',
 });
 Location.belongsTo(User, {
-    foreignKey: 'userID',
+    foreignKey: {allowNull: false, name: 'userID'},
     targerID: 'id'
 });
 
-Service.hasOne(Location, {
+Service.hasMany(Location, {
     foreignKey: 'serviceID',
     sourceKey: 'id',
 });
-Location.belongsTo(Service, {
-    foreignKey: 'serviceID',
+Service.belongsTo(Location, {
+    foreignKey: 'locationID',
     targerID: 'id'
 });
