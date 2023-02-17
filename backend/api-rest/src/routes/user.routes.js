@@ -11,12 +11,14 @@ import {
     getUserStations,
     getUserIn_Times,
     getUserOut_Times,
-    getUserLocations
+    getUserLocations,
+    getUserAuth
 } from '../controllers/user.controller.js'
 
 const router = Router();
 
 router.get('/user', getUsers);   //Obtener usuarios
+router.post('/user/login/', getUserAuth); //Obtener un usuario con password
 router.get('/user/:id', getUser);   //Obtener un usuario
 router.post('/user', createUser);  //Crear Usuarios
 router.put('/user/:id', updateUserData);   //Actualizar un usuario

@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import userRoutes from './routes/user.routes.js'
 import stationRoutes from './routes/station.routes.js'
 import users_StationsRoutes from './routes/users_stations.routes.js'
@@ -11,8 +12,11 @@ import serviceRoutes from './routes/service.routes.js'
 
 const app = express();
 
+
+
 //middlewares
 app.use(express.json());
+app.use(cors());
 
 app.use(userRoutes);
 app.use(stationRoutes);
