@@ -6,24 +6,24 @@ export const User = sequelize.define('users', {
     id: {
         type: DataTypes.BIGINT,
         primaryKey: true,
-        validate:{
-            len: [8,12],
-            isNumeric: true, 
+        validate: {
+            len: [8, 12],
+            isNumeric: true,
         }
     },
     password: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate:{
+        validate: {
             len: [4, 20],
-            notEmpty: true, 
+            notEmpty: true,
         }
     },
     name1:
     {
         type: DataTypes.STRING,
         allowNull: false,
-        validate:{
+        validate: {
             isAlpha: true,
             len: [3, 20],
         }
@@ -31,7 +31,7 @@ export const User = sequelize.define('users', {
     name2: {
         type: DataTypes.STRING,
         allowNull: true,
-        validate:{
+        validate: {
             isAlpha: true,
             len: [3, 20],
         }
@@ -39,7 +39,7 @@ export const User = sequelize.define('users', {
     surname1: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate:{
+        validate: {
             isAlpha: true,
             len: [3, 20],
         }
@@ -47,7 +47,7 @@ export const User = sequelize.define('users', {
     surname2: {
         type: DataTypes.STRING,
         allowNull: true,
-        validate:{
+        validate: {
             isAlpha: true,
             len: [3, 20],
         }
@@ -56,9 +56,15 @@ export const User = sequelize.define('users', {
         type: DataTypes.INTEGER,
         defaultValue: 0,
         allowNull: false,
-        validate:{
+        validate: {
             isInt: true,
         }
+    },
+
+    online: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+        allowNull: false,
     },
    
     active: {
