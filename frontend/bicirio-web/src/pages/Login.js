@@ -6,7 +6,6 @@ import Cookies from 'universal-cookie';
 const baseUrl = ("http://localhost:3001/user/login/");
 const cookies = new Cookies();
 
-
 class Login extends Component {
 
     state = {

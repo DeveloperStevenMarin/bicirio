@@ -10,21 +10,22 @@ const cookies = new Cookies();
 const usersUrl = ("http://localhost:3001/user/");
 
 
+
 class Users extends Component {
 
     constructor(props) {
         super(props);
-
         this.state = {
             users: [],
             DataisLoaded: false,
-            selectedUser: {}
+            selectedUser: null
         };
     }
 
 
-    componentDidMount() {
 
+
+    componentDidMount() {
         if ((!cookies.get('id'))) {
             window.location.href = "./";
         } else if ((cookies.get('profile') <= 0)) {
@@ -47,7 +48,6 @@ class Users extends Component {
                     DataisLoaded: true,
                 });
             });
-
     }
 
     getUsers = async () => {
@@ -81,28 +81,32 @@ class Users extends Component {
 
     getSelectedUser = e => {
         this.setState({
-            selectedUser:{
-              [e.target.name]:  (e.target.value)
+            selectedUser: {
+                [e.target.name]: (e.target.value)
             }
-              
-
         });
-        
-        console.log(this.state.selectedUser)
-        //window.location.href = "users/update";
+        const validacion = this.state.selectedUser;
+        if ((!validacion) || validacion.id === undefined) {
+            console.log("No hay usuario seleccionado")
+            console.log(this.state.selectedUser);
+        } else {
+            cookies.set('selectedUser', this.state.selectedUser.id, { path: "/" });
+            //window.location.href = "users/update";
+            console.log(this.state.selectedUser);
+        }
     }
-    updateUser = async => {
-
-    }
+  
 
     render() {
 
         const { DataisLoaded, users } = this.state;
-        if (!DataisLoaded) return <div>
-            <h1> Pleses wait some time.... </h1> </div>;
+        if (!DataisLoaded) return (<div>
+           
+            <h1> Pleses wait some time.... </h1> </div>);
         return (
 
             <div className="home-content">
+
                 <input type="checkbox" id="active" />
                 <label htmlFor="active" className="menu-btn"><span></span></label>
                 <label htmlFor="active" className="close"></label>
@@ -128,10 +132,8 @@ class Users extends Component {
                             <h3>Nombre</h3>
                             <h3>Cédula</h3>
                         </div>
-
                         {users.map((user) => (
                             <section className="section user-section">
-
                                 <ul className="list user-list">
 
                                     <li key={user.id}>
@@ -159,5 +161,4 @@ class Users extends Component {
         );
     }
 };
-
 export default Users;
