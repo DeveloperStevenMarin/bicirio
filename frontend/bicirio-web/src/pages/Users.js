@@ -91,17 +91,17 @@ class Users extends Component {
             console.log(this.state.selectedUser);
         } else {
             cookies.set('selectedUser', this.state.selectedUser.id, { path: "/" });
-            //window.location.href = "users/update";
+            window.location.href = "users/update";
             console.log(this.state.selectedUser);
         }
     }
-  
+
 
     render() {
 
         const { DataisLoaded, users } = this.state;
         if (!DataisLoaded) return (<div>
-           
+
             <h1> Pleses wait some time.... </h1> </div>);
         return (
 
