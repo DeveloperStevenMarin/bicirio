@@ -39,7 +39,7 @@ export const getUser = async (req, res) => {
 
 //Obtener un usuario con password
 export const getUserAuth = async (req, res, next) => {
-    
+
     try {
         const user = await User.findOne({ where: { id: req.body.id } });
         res.header("Access-Control-Allow-Origin", "*");

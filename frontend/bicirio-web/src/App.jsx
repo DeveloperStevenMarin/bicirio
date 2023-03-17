@@ -1,11 +1,12 @@
 import "./App.css";
 import { Routes, Route } from "react-router";
-import Home from "./pages/Home";
-import LoginPage from "./pages/LoginPage";
-import Users from "./pages/Users";
-import Stations from "./pages/Stations";
-import AddUser from "./components/AddUser";
-import UpdateUser from "./components/UpdateUser";
+import Home from "./components/home/Home";
+import LoginPage from "./components/login/LoginPage";
+import Users from "./components/user/Users";
+import Stations from "./components/station/Stations";
+import AddUser from "./components/user/AddUser";
+import UpdateUser from "./components/user/UpdateUser";
+import AddStation from './components/station/AddStation'
 import { BrowserRouter } from "react-router-dom";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path="users/add" element={<AddUser />} />
         <Route path="users/update" element={<UpdateUser />} />
         <Route path="stations" element={<Stations />} />
+        <Route path="stations/add" element={<AddStation />} />
       </Routes>
     </BrowserRouter>
   );
