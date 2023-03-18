@@ -1,14 +1,13 @@
 import { useState } from "react";
 import { BiPlus } from "react-icons/bi";
 import UserCard from "./UserCard";
-import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export default function UserList({ userList }) {
   const [userPerPage, setUserPerPage] = useState(15);
-  const users = useSelector((state) => state.userList);
-  console.log(users);
+  const navigate = useNavigate();
   const addUser = () => {
-    window.location.href = "users/add";
+    navigate("users/add");
   };
   return (
     <div className="content">

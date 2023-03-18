@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import "./AddUser.css";
 import { BiArrowBack } from "react-icons/bi";
+import { useLocation, useNavigate } from "react-router-dom";
 
-function UpdateUser({ selectedUser }) {
+function UpdateUser() {
   const [register, setRegister] = useState();
-  const userToUpdate = JSON.parse(selectedUser);
+  const selectedUser = useLocation();
+  const navigate = useNavigate();
+
+  const userToUpdate = JSON.parse(selectedUser.state.selectedUser);
   const updateUserUrl = "http://localhost:3001/user/" + userToUpdate.id;
-  console.log(updateUserUrl);
   const back = () => {
-    window.location.href = "./";
+   navigate('../users');
   };
   const handleSubmit = async (e) => {
     try {
@@ -20,7 +23,9 @@ function UpdateUser({ selectedUser }) {
         },
         body: JSON.stringify(register),
       })
-        .then(window.location.reload())
+        .then(
+          navigate('/users')
+        )
         .catch((error) => {
           alert("Por favor verifique los datos:" + error);
         });
@@ -34,7 +39,6 @@ function UpdateUser({ selectedUser }) {
       ...register,
       [e.target.name]: e.target.value,
     });
-    console.log(register);
   };
   return (
     <div className="home-content">
@@ -66,7 +70,8 @@ function UpdateUser({ selectedUser }) {
                 placeholder=" "
                 autoComplete="new-password"
                 name="name1"
-                minLength={3} maxLength={20}
+                minLength={3}
+                maxLength={20}
                 onChange={handleChange}
               />
               <div className="form_cut"></div>

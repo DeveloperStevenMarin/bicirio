@@ -6,11 +6,13 @@ import MenuList from "../general/MenuList";
 import UserList from "./UserList";
 import { useDispatch, useSelector } from "react-redux";
 import { initializeUserList } from "../../features/users/userSlice";
+import { useNavigate } from "react-router-dom";
 
 export default function User() {
+  const navigate = useNavigate();
   let [dataIsLoaded, setDataIsLoaded] = useState(false);
   const dispatch = useDispatch();
-  const userListStore = useSelector((state) => state.userListStore);
+  const Store = useSelector((state) => state.Store);
   const [loggedUser, setLoggedUser] = useState({
     name1: "",
     surname1: "",
@@ -20,7 +22,7 @@ export default function User() {
     const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
     setLoggedUser(loggedUser);
     if (!loggedUser) {
-      window.location.href = "./";
+      navigate('/')
     } else if (loggedUser.profile <= 0) {
       console.log(loggedUser);
       alert("Usted no es admin");
@@ -40,7 +42,7 @@ export default function User() {
       });
   }, []);
   const back = async () => {
-    window.location.href = "/home";
+    navigate('../');
   };
 
   if (!dataIsLoaded) {
@@ -56,7 +58,7 @@ export default function User() {
           <BiArrowBack />
         </button>
         <MenuList />
-        <UserList userList={userListStore.data} />
+        <UserList userList={Store.userList.data} />
       </div>
     );
   }

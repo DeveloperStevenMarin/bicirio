@@ -4,17 +4,18 @@ import { API_USER_URL } from "../../config/config";
 import Button from "../Button";
 import { useDispatch, useSelector } from "react-redux";
 import { addLoggedUser } from "../../features/users/loggedUserSlice";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginPage() {
+  const navigate = useNavigate();
   const loginUrl = API_USER_URL + "/login/";
   const [form, setForm] = useState();
-  useSelector(state => state.loggedUser);
+  useSelector(state => state.Store.loggedUser.data);
   const dispatch = useDispatch();
+  const loggedUser = useSelector((state) => state.Store.loggedUser.data);
   useEffect(() => {
-   
-    const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
     if (loggedUser) {
-      window.location.href = "./home";
+      navigate('./home');
     }
   }, []);
 
@@ -28,7 +29,6 @@ export default function LoginPage() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     login();
-    console.log("enviado");
   };
 
   const login = async () => {
@@ -51,7 +51,7 @@ export default function LoginPage() {
         } else {
           if (data.active === true) {
             dispatch(addLoggedUser(data));
-            window.location.href = "./home";
+            navigate('./home');
             localStorage.setItem("loggedUser", JSON.stringify(data));
             
           } else {
