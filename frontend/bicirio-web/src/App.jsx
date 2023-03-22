@@ -7,6 +7,9 @@ import Stations from "./components/station/Stations";
 import AddUser from "./components/user/AddUser";
 import UpdateUser from "./components/user/UpdateUser";
 import AddStation from './components/station/AddStation'
+import UpdateStation from './components/station/UpdateStation'
+import Schedules from './components/schedule/Schedules'
+import AddSchedule from "./components/schedule/AddSchedule";
 import { BrowserRouter } from "react-router-dom";
 
 function App() {
@@ -20,6 +23,9 @@ function App() {
         <Route path="users/update" element={<UpdateUser />} />
         <Route path="stations" element={<Stations />} />
         <Route path="stations/add" element={<AddStation />} />
+        <Route path="stations/update" element={<UpdateStation />} />
+        <Route path="schedules" element={<Schedules />} />
+        <Route path="schedules/add" element={<AddSchedule />} />
       </Routes>
     </BrowserRouter>
   );

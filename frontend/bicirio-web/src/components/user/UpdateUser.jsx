@@ -2,16 +2,17 @@ import React, { useState } from "react";
 import "./AddUser.css";
 import { BiArrowBack } from "react-icons/bi";
 import { useLocation, useNavigate } from "react-router-dom";
+import { API_USER_URL } from "../../config/config";
 
-function UpdateUser() {
+export default function UpdateUser() {
   const [register, setRegister] = useState();
   const selectedUser = useLocation();
   const navigate = useNavigate();
 
   const userToUpdate = JSON.parse(selectedUser.state.selectedUser);
-  const updateUserUrl = "http://localhost:3001/user/" + userToUpdate.id;
+  const updateUserUrl = API_USER_URL + "/" + userToUpdate.id;
   const back = () => {
-   navigate('../users');
+    navigate("../users");
   };
   const handleSubmit = async (e) => {
     try {
@@ -24,7 +25,7 @@ function UpdateUser() {
         body: JSON.stringify(register),
       })
         .then(
-          navigate('/users')
+          navigate("../users")
         )
         .catch((error) => {
           alert("Por favor verifique los datos:" + error);
@@ -149,5 +150,3 @@ function UpdateUser() {
     </div>
   );
 }
-
-export default UpdateUser;

@@ -1,20 +1,28 @@
 import React, { useState } from "react";
-import { API_STATION_URL } from "../../config/config";
+import { API_SCHEDULE_URL } from "../../config/config";
 import { BiArrowBack } from "react-icons/bi";
+import { useSelector } from "react-redux";
 
-export default function AddStation() {
+export default function AddSchedule() {
+  const currentDate = new Date();
+  const loggedUser = useSelector((state) => state.Store.loggedUser.data);
+  const userList = useSelector((state) => state.Store.userList.data);
+  console.log(userList);
   const [register, setRegister] = useState({});
-  const createStation = async () => {
-    fetch(API_STATION_URL, {
+  const createSchedule = async () => {
+    fetch(API_SCHEDULE_URL, {
       method: "POST",
       headers: {
         Accept: "application/json, text/plain, */*",
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name: register.name,
-        latitude: register.latitude,
-        longitude: register.longitude,
+        assign_in_time: register.assign_in_time,
+        assign_out_time: register.assign_out_time,
+        break_time: register.break_time,
+        userID: register.userID,
+        timestamp: currentDate,
+        coordinator: loggedUser.id,
       }),
     })
       .then((response) => response.json())
@@ -22,7 +30,7 @@ export default function AddStation() {
         if (data.message) {
           alert(data.message);
         } else {
-          alert("Estacion creada con éxito");
+          alert("Horario creado con éxito");
           window.location.href = "./";
         }
       })
@@ -51,55 +59,63 @@ export default function AddStation() {
       <div className="content">
         <section className="section user-section">
           <div className="form form--add-user">
-          <div className="form_input-container--add-user">
-              <input
-                id="name"
-                className="form_input--add-user"
-                type="text"
-                placeholder=" "
-                name="name"
-                onChange={handleChange}
-              />
-              <div className="form_cut"></div>
-              <label htmlFor="name" className="form_placeholder--add-user">
-                Nombre
-              </label>
-            </div>
+            <label for="cars">Operario:</label>
+            <select name="userID" onChange={handleChange}>
+              {userList.map((user) => (
+                <option value={user.id}>
+                  {user.name1} {user.surname1}
+                </option>
+              ))}
+            </select>
             <div className="form_input-container--add-user">
               <input
                 id="latitud"
                 className="form_input--add-user"
-                type="number"
+                type="time"
                 placeholder=" "
-                name="latitude"
+                name="assign_in_time"
                 onChange={handleChange}
               />
               <div className="form_cut"></div>
               <label htmlFor="latitude" className="form_placeholder--add-user">
-                latitud
+                Hora de ingreso
               </label>
             </div>
             <div className="form_input-container--add-user">
               <input
                 id="longitude"
                 className="form_input--add-user"
-                type="number"
+                type="time"
                 placeholder=" "
-                name="longitude"
+                name="assign_out_time"
                 onChange={handleChange}
               />
               <div className="form_cut"></div>
               <label htmlFor="longitude" className="form_placeholder--add-user">
-                longitud
+                Hora de egreso
               </label>
             </div>
-            
+            <div className="form_input-container--add-user">
+              <input
+                id="longitude"
+                className="form_input--add-user"
+                type="time"
+                placeholder=" "
+                name="break_time"
+                onChange={handleChange}
+              />
+              <div className="form_cut"></div>
+              <label htmlFor="longitude" className="form_placeholder--add-user">
+                Hora de descanso
+              </label>
+            </div>
+
             <button
               type="text"
               className="btn_form-submit--user"
-              onClick={createStation}
+              onClick={createSchedule}
             >
-              Crear Estacion
+              Crear Horario
             </button>
           </div>
         </section>

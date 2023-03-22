@@ -1,48 +1,44 @@
 import React, { useState } from "react";
-import { API_STATION_URL } from "../../config/config";
+
 import { BiArrowBack } from "react-icons/bi";
+import { useLocation, useNavigate } from "react-router-dom";
+import { API_STATION_URL } from "../../config/config";
 
-export default function AddStation() {
-  const [register, setRegister] = useState({});
-  const createStation = async () => {
-    fetch(API_STATION_URL, {
-      method: "POST",
-      headers: {
-        Accept: "application/json, text/plain, */*",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: register.name,
-        latitude: register.latitude,
-        longitude: register.longitude,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.message) {
-          alert(data.message);
-        } else {
-          alert("Estacion creada con éxito");
-          window.location.href = "./";
-        }
-      })
-      .catch((err) => {
-        alert(err);
-      });
-  };
-  const handleChange = (event) => {
-    event.persist();
-    setRegister({
-      ...register,
-      [event.target.name]: event.target.value,
-    });
-    console.log(register);
-  };
+export default function UpdateStation() {
+  const [register, setRegister] = useState();
+  const selectedStation = useLocation();
+  const navigate = useNavigate();
 
+  const stationToUpdate = JSON.parse(selectedStation.state.selectedStation);
+  const updateStationUrl = API_STATION_URL + "/" + stationToUpdate.id;
   const back = () => {
-    window.location.href = "./";
+    navigate("../stations");
+  };
+  const handleSubmit = async (e) => {
+    try {
+      await fetch(updateStationUrl, {
+        method: "PUT",
+        headers: {
+          Accept: "application/json, text/plain, */*",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(register),
+      })
+        .then(navigate("/stations"))
+        .catch((error) => {
+          alert("Por favor verifique los datos:" + error);
+        });
+    } catch (e) {
+      alert(e);
+    }
   };
 
+  const handleChange = async (e) => {
+    await setRegister({
+      ...register,
+      [e.target.name]: e.target.value,
+    });
+  };
   return (
     <div className="home-content">
       <button className="btn--back" onClick={back}>
@@ -51,7 +47,7 @@ export default function AddStation() {
       <div className="content">
         <section className="section user-section">
           <div className="form form--add-user">
-          <div className="form_input-container--add-user">
+            <div className="form_input-container--add-user">
               <input
                 id="name"
                 className="form_input--add-user"
@@ -62,21 +58,7 @@ export default function AddStation() {
               />
               <div className="form_cut"></div>
               <label htmlFor="name" className="form_placeholder--add-user">
-                Nombre
-              </label>
-            </div>
-            <div className="form_input-container--add-user">
-              <input
-                id="latitud"
-                className="form_input--add-user"
-                type="number"
-                placeholder=" "
-                name="latitude"
-                onChange={handleChange}
-              />
-              <div className="form_cut"></div>
-              <label htmlFor="latitude" className="form_placeholder--add-user">
-                latitud
+                {stationToUpdate.name}
               </label>
             </div>
             <div className="form_input-container--add-user">
@@ -90,16 +72,29 @@ export default function AddStation() {
               />
               <div className="form_cut"></div>
               <label htmlFor="longitude" className="form_placeholder--add-user">
-                longitud
+                {stationToUpdate.longitude}
               </label>
             </div>
-            
+            <div className="form_input-container--add-user">
+              <input
+                id="latitude"
+                className="form_input--add-user"
+                type="number"
+                placeholder=" "
+                name="latitude"
+                onChange={handleChange}
+              />
+              <div className="form_cut"></div>
+              <label htmlFor="latitude" className="form_placeholder--add-user">
+                {stationToUpdate.latitude}
+              </label>
+            </div>
             <button
               type="text"
               className="btn_form-submit--user"
-              onClick={createStation}
+              onClick={handleSubmit}
             >
-              Crear Estacion
+              Actualizar informacion
             </button>
           </div>
         </section>

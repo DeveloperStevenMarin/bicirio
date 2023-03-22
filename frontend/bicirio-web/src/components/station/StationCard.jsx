@@ -1,19 +1,10 @@
 import { BiEdit } from "react-icons/bi";
+import { useNavigate } from "react-router-dom";
 export default function StationCard({ station }) {
-  const getSelectedStation = (e) => {
-    this.setState({
-      selectedStation: {
-        [e.target.name]: e.target.value,
-      },
-    });
-    const validacion = this.state.selectedStation;
-    if (!validacion || validacion.id === undefined) {
-      console.log("No hay usuario seleccionado");
-      console.log(this.state.selectedUser);
-    } else {
-      window.location.href = "stations/update";
-      console.log(this.state.selectedUser);
-    }
+  const navigate = useNavigate();
+  const handleClick = (event) => {
+    const selectedStation = event.target.value;
+    navigate("/stations/update", { state: { selectedStation } });
   };
 
   return (
@@ -22,8 +13,13 @@ export default function StationCard({ station }) {
         <li key={station.id}>{station.name}</li>
         <li>{station.longitude}</li>
       </ul>
-      <button className="btn btn-edit-users" name="id" value={station.id}>
-        <BiEdit />
+      <button
+        className="btn btn-edit-users"
+        name="id"
+        value={JSON.stringify(station)}
+        onClick={handleClick}
+      >
+         <BiEdit className="icon--update" />
       </button>
     </section>
   );

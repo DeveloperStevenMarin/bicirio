@@ -25,7 +25,7 @@ const userSlice = createSlice({
 
 
 // Exportamos las acciones y el reducer de usuarios para su uso en otros componentes de la aplicación
-export const { initializeUserList } = userSlice.actions;
+export const { initializeUserList, deleteUserList } = userSlice.actions;
 export default userSlice.reducer;
 
 

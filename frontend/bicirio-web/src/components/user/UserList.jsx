@@ -7,7 +7,7 @@ export default function UserList({ userList }) {
   const [userPerPage, setUserPerPage] = useState(15);
   const navigate = useNavigate();
   const addUser = () => {
-    navigate("users/add");
+    navigate('./add');
   };
   return (
     <div className="content">

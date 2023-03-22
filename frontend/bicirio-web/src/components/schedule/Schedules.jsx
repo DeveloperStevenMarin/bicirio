@@ -1,20 +1,22 @@
-import React, { useState, useEffect } from "react";
-import "./Stations.css";
-import { BiArrowBack } from "react-icons/bi";
-import { API_STATION_URL } from "../../config/config";
+import { API_SCHEDULE_URL } from "../../config/config";
 import MenuList from "../general/MenuList";
-import StationList from "./StationList";
-import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { BiArrowBack } from "react-icons/bi";
 import { removeLoggedUser } from "../../features/users/loggedUserSlice";
-import { initializeStationList } from "../../features/stations/stationSlice";
+import { useDispatch, useSelector } from "react-redux";
+import React, { useState, useEffect } from "react";
+import Loading from "../general/Loading/Loading";
+import ScheduleList from "./ScheduleList";
 
-export default function Station() {
+export default function Schedules() {
   let [dataIsLoaded, setDataIsLoaded] = useState(false);
+  const loggedUser = useSelector((state) => state.Store.loggedUser.data);
+  const [scheduleList, setScheduleList] = useState([]);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const loggedUser = useSelector((state) => state.Store.loggedUser.data);
-  const stationList = useSelector((state) => state.Store.stationList.data);
+  const back = async () => {
+    navigate("../");
+  };
   useEffect(() => {
     if (!loggedUser) {
       navigate("../");
@@ -23,7 +25,7 @@ export default function Station() {
       alert("Usted no es admin");
       navigate("../");
     }
-    fetch(API_STATION_URL, {
+    fetch(API_SCHEDULE_URL, {
       method: "GET",
       headers: {
         Accept: "application/json, text/plain, */*",
@@ -32,21 +34,13 @@ export default function Station() {
     })
       .then((res) => res.json())
       .then((json) => {
-        dispatch(initializeStationList(json));
+        setScheduleList(json);
         setDataIsLoaded(true);
       });
   }, []);
-
-  const back = async () => {
-    navigate("../");
-  };
-
+  console.log(scheduleList);
   if (!dataIsLoaded) {
-    return (
-      <>
-        <h1> Pleses wait some time.... </h1>
-      </>
-    );
+    return <Loading />;
   } else {
     return (
       <div className="home-content">
@@ -54,7 +48,7 @@ export default function Station() {
           <BiArrowBack />
         </button>
         <MenuList />
-        <StationList stationList={stationList} />
+        <ScheduleList />
       </div>
     );
   }

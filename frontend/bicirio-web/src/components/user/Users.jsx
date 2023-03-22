@@ -39,6 +39,7 @@ export default function User() {
       .then((json) => {
         dispatch(initializeUserList(json));
         setDataIsLoaded(true);
+        
       });
   }, []);
   const back = async () => {

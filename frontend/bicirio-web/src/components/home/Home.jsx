@@ -5,6 +5,7 @@ import MenuList from "../general/MenuList";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { removeLoggedUser } from "../../features/users/loggedUserSlice";
+import { API_OUT_TIME_URL } from "../../config/config";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -17,12 +18,27 @@ export default function Home() {
     } else if (loggedUser.profile <= 0) {
       dispatch(removeLoggedUser(null));
       alert("Usted no es admin");
+      navigate("../");
     }
     document.title = `Bicirio`;
   }, []);
   const logout = async () => {
+    out_time(loggedUser.id, loggedUser.schedule);
     dispatch(removeLoggedUser(null));
     navigate("../");
+  };
+  const out_time = async (userId, scheduleID) => {
+    await fetch(API_OUT_TIME_URL, {
+      method: "POST",
+      headers: {
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userID: userId,
+        scheduleID: scheduleID,
+      }),
+    });
   };
 
   if (!loggedUser) {

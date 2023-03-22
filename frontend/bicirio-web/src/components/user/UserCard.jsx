@@ -1,13 +1,9 @@
-import { useState } from "react";
 import { BiEdit } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
-import UpdateUser from "./UpdateUser";
 export default function UserCard({ user }) {
   const navigate = useNavigate();
-  const [selectedUser, setSelectedUser] = useState();
   const handleClick = (event) => {
     const selectedUser = event.target.value;
-    setSelectedUser(event.target.value);
     navigate("/users/update", { state: { selectedUser } });
   };
 
@@ -23,7 +19,6 @@ export default function UserCard({ user }) {
         className="btn btn-edit-users"
         name="id"
         value={JSON.stringify(user)}
-        // onClick={() => setSelectedUser(JSON.stringify(user))}
         onClick={handleClick}
       >
         <BiEdit className="icon--update" />

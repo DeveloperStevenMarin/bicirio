@@ -5,17 +5,19 @@ import Button from "../Button";
 import { useDispatch, useSelector } from "react-redux";
 import { addLoggedUser } from "../../features/users/loggedUserSlice";
 import { useNavigate } from "react-router-dom";
+import { API_IN_TIME_URL } from "../../config/config";
 
 export default function LoginPage() {
+  const currentDate = new Date();
   const navigate = useNavigate();
   const loginUrl = API_USER_URL + "/login/";
   const [form, setForm] = useState();
-  useSelector(state => state.Store.loggedUser.data);
+  useSelector((state) => state.Store.loggedUser.data);
   const dispatch = useDispatch();
   const loggedUser = useSelector((state) => state.Store.loggedUser.data);
   useEffect(() => {
     if (loggedUser) {
-      navigate('./home');
+      navigate("./home");
     }
   }, []);
 
@@ -29,6 +31,20 @@ export default function LoginPage() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     login();
+  };
+
+  const in_time = async (userId, scheduleID) => {
+    await fetch(API_IN_TIME_URL, {
+      method: "POST",
+      headers: {
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userID: userId,
+        scheduleID: scheduleID,
+      }),
+    });
   };
 
   const login = async () => {
@@ -45,15 +61,15 @@ export default function LoginPage() {
     })
       .then((response) => response.json())
       .then((data) => {
-
         if (data.error) {
           alert(data.error); /*displays error message*/
         } else {
           if (data.active === true) {
             dispatch(addLoggedUser(data));
-            navigate('./home');
+            navigate("./home");
             localStorage.setItem("loggedUser", JSON.stringify(data));
-            
+            in_time(data.id, data.schedule);
+            console.log(data);
           } else {
             alert("Este usuario no está activo");
           }
