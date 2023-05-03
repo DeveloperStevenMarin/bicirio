@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { BiPlus } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
+import ScheduleCard from "./ScheduleCard";
 
 export default function ScheduleList({ scheduleList }) {
   const navigate = useNavigate();
@@ -17,9 +18,11 @@ export default function ScheduleList({ scheduleList }) {
           <h3>Hora entrada</h3>
           <h3>Hora salida</h3>
         </div>
-        {/* {stationList.map((station) => (
-          <StationCard station={station} />
-        ))} */}
+        {scheduleList.map((schedule) => (
+          
+          <ScheduleCard schedule={schedule} />
+          
+        ))}
       </div>
       <button className="btn btn--add-user" onClick={addSchedule}>
         <BiPlus />

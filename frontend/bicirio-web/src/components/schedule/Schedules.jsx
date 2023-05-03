@@ -48,7 +48,7 @@ export default function Schedules() {
           <BiArrowBack />
         </button>
         <MenuList />
-        <ScheduleList />
+        <ScheduleList scheduleList={scheduleList}/>
       </div>
     );
   }

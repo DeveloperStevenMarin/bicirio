@@ -7,6 +7,7 @@ import UserList from "./UserList";
 import { useDispatch, useSelector } from "react-redux";
 import { initializeUserList } from "../../features/users/userSlice";
 import { useNavigate } from "react-router-dom";
+import Loading from "../general/Loading/Loading";
 
 export default function User() {
   const navigate = useNavigate();
@@ -48,9 +49,7 @@ export default function User() {
 
   if (!dataIsLoaded) {
     return (
-      <>
-        <h1> Pleses wait some time.... </h1>
-      </>
+      <Loading/>
     );
   } else {
     return (

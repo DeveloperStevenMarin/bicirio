@@ -3,18 +3,27 @@ import "./AddUser.css";
 import { BiArrowBack } from "react-icons/bi";
 import { useLocation, useNavigate } from "react-router-dom";
 import { API_USER_URL } from "../../config/config";
+import { useSelector } from "react-redux";
 
 export default function UpdateUser() {
+  const loggedUser = useSelector((state) => state.Store.loggedUser.data);
   const [register, setRegister] = useState();
   const selectedUser = useLocation();
   const navigate = useNavigate();
-
+  const profileOptions = [
+    { value: 0, label: "Operario" },
+    { value: 1, label: "Técnico" },
+    { value: 2, label: "Supervisor" },
+    { value: 3, label: "Coordinador" },
+  ];
+  
+  const options = profileOptions.filter(option=> loggedUser.profile>=option.value)
   const userToUpdate = JSON.parse(selectedUser.state.selectedUser);
   const updateUserUrl = API_USER_URL + "/" + userToUpdate.id;
   const back = () => {
     navigate("../users");
   };
-  const handleSubmit = async (e) => {
+  const handleSubmit = async () => {
     try {
       await fetch(updateUserUrl, {
         method: "PUT",
@@ -24,9 +33,7 @@ export default function UpdateUser() {
         },
         body: JSON.stringify(register),
       })
-        .then(
-          navigate("../users")
-        )
+        .then(navigate("../users"))
         .catch((error) => {
           alert("Por favor verifique los datos:" + error);
         });
@@ -40,6 +47,7 @@ export default function UpdateUser() {
       ...register,
       [e.target.name]: e.target.value,
     });
+    console.log(register);
   };
   return (
     <div className="home-content">
@@ -123,19 +131,16 @@ export default function UpdateUser() {
               </label>
             </div>
             <div className="form_input-container--add-user">
-              <input
-                id="id"
-                className="form_input--add-user"
-                type="number"
-                autoComplete="email"
-                placeholder=" "
+              <select
                 name="profile"
+                defaultValue={userToUpdate.profile}
                 onChange={handleChange}
-              />
-              <div className="form_cut"></div>
-              <label htmlFor="id" className="form_placeholder--add-user">
-                {userToUpdate.profile}
-              </label>
+                className="form_input--add-user"
+              >
+                {options.map((option) => (
+                  <option value={option.value}>{option.label}</option>
+                ))}
+              </select>
             </div>
             <button
               type="text"

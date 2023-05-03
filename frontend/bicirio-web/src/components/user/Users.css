@@ -17,6 +17,32 @@
   margin-top: 30px;
   margin-bottom: 20px;
 }
+.userDetailsCardModal{
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 1);
+  border-radius: 10px;
+  top: 22%;
+  padding: 10px 20px 20px 20px;
+  width: 659px;
+  height: 565px;
+
+}
+.userDetailsCardModal--close{
+  display: none;
+  pointer-events: none;
+}
+.btn-close--modal{
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border-radius: 50px;
+  border: 0;
+  right: 2%;
+  pointer-events: visible;
+
+}
 
 .btn-edit-users {
   width: 30px;

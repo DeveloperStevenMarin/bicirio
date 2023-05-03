@@ -15,10 +15,11 @@ export default function Home() {
   useEffect(() => {
     if (!loggedUser) {
       navigate("../");
-    } else if (loggedUser.profile <= 0) {
-      dispatch(removeLoggedUser(null));
-      alert("Usted no es admin");
-      navigate("../");
+    // } else if (loggedUser.profile <= 0) {
+    //   dispatch(removeLoggedUser(null));
+    //   alert("Usted no es admin");
+    //   navigate("../");
+    //
     }
     document.title = `Bicirio`;
   }, []);
@@ -43,6 +44,26 @@ export default function Home() {
 
   if (!loggedUser) {
     <></>;
+  }
+  if (loggedUser.profile < 2) {
+    return (
+      <div className="home-content">
+        <button className="btn--logout" onClick={() => logout()}>
+          <BiLogOut />
+        </button>
+        <div className="content">
+          <div className="title">Área de trabajo</div>
+          <p>
+            {loggedUser.name1} {loggedUser.surname1}
+          </p>
+          <ul>
+            <li>Uno</li>
+            <li>Dos</li>
+            <li>Tres</li>
+          </ul>
+        </div>
+      </div>
+    );
   } else {
     return (
       <div className="home-content">

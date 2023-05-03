@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { API_SCHEDULE_URL } from "../../config/config";
+import { API_SCHEDULE_URL, API_USER_URL } from "../../config/config";
 import { BiArrowBack } from "react-icons/bi";
 import { useSelector } from "react-redux";
 
@@ -7,8 +7,26 @@ export default function AddSchedule() {
   const currentDate = new Date();
   const loggedUser = useSelector((state) => state.Store.loggedUser.data);
   const userList = useSelector((state) => state.Store.userList.data);
-  console.log(userList);
   const [register, setRegister] = useState({});
+  const assignShceduleToUser = async (user, schedule) => {
+    console.log('User: '+ user+ ' Schedule:'+ schedule)
+    try {
+      await fetch(API_USER_URL + "/" + user, {
+        method: "PUT",
+        headers: {
+          Accept: "application/json, text/plain, */*",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({scheduleID: schedule}),
+      })
+        .then()
+        .catch((error) => {
+          alert("Por favor verifique los datos:" + error);
+        });
+    } catch (e) {
+      alert(e);
+    }
+  };
   const createSchedule = async () => {
     fetch(API_SCHEDULE_URL, {
       method: "POST",
@@ -30,6 +48,7 @@ export default function AddSchedule() {
         if (data.message) {
           alert(data.message);
         } else {
+          assignShceduleToUser(register.userID, data.id);
           alert("Horario creado con éxito");
           window.location.href = "./";
         }
@@ -59,8 +78,8 @@ export default function AddSchedule() {
       <div className="content">
         <section className="section user-section">
           <div className="form form--add-user">
-            <label for="cars">Operario:</label>
-            <select name="userID" onChange={handleChange}>
+            <label for="operario">Operario:</label>
+            <select name="userID" onChange={handleChange} className="form_input--add-user" style={{height: '50px'}}>
               {userList.map((user) => (
                 <option value={user.id}>
                   {user.name1} {user.surname1}

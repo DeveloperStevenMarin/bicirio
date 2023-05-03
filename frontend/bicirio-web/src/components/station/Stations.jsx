@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { removeLoggedUser } from "../../features/users/loggedUserSlice";
 import { initializeStationList } from "../../features/stations/stationSlice";
+import Loading from "../general/Loading/Loading";
 
 export default function Station() {
   let [dataIsLoaded, setDataIsLoaded] = useState(false);
@@ -43,9 +44,7 @@ export default function Station() {
 
   if (!dataIsLoaded) {
     return (
-      <>
-        <h1> Pleses wait some time.... </h1>
-      </>
+     <Loading/>
     );
   } else {
     return (

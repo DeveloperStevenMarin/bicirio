@@ -16,10 +16,10 @@ export const getStations = async (req, res) => {
 //Obtener una estacion
 export const getStation = async (req, res) => {
     try {
-        const { name } = req.params
+        const { id } = req.params
         const station = await Station.findOne({
             where: {
-                name
+                id
             }
         });
 

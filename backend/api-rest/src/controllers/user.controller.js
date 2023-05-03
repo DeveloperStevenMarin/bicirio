@@ -102,7 +102,11 @@ export const updateUserData = async (req, res) => {
             name1: req.body.name1,
             name2: req.body.name2,
             surname1: req.body.surname1,
-            surname2: req.body.surname2
+            surname2: req.body.surname2,
+            scheduleID: req.body.scheduleID,
+            active: req.body.active,
+            profile: req.body.profile,
+            online: req.body.online
         });
         await user.save();
         return res.json(user)
@@ -111,22 +115,6 @@ export const updateUserData = async (req, res) => {
     }
 }
 
-//Actualizar perfil de usuario
-export const updateUserProfile = async (req, res) => {
-    try {
-        const { id } = req.params
-        const user = await User.findOne({
-            where: { id },
-        });
-        user.update({
-            profile: req.body.profile
-        });
-        await user.save();
-        return res.json(user)
-    } catch (error) {
-        return res.status(500).json({ message: error.message });
-    }
-}
 
 //Actualizar estaciones de usuario
 export const updateUserStations = async (req, res) => {
@@ -145,39 +133,6 @@ export const updateUserStations = async (req, res) => {
     }
 }
 
-//Actualizar horarios de usuario
-export const updateUserSchedule = async (req, res) => {
-    try {
-        const { id } = req.params
-        const user = await User.findOne({
-            where: { id },
-        });
-        user.update({
-            schedule: req.body.station
-        });
-        await user.save();
-        return res.json(user)
-    } catch (error) {
-        return res.status(500).json({ message: error.message });
-    }
-}
-
-//Actualizar estado de activo o desactivo del usuario
-export const updateUserActive = async (req, res) => {
-    try {
-        const { id } = req.params
-        const user = await User.findOne({
-            where: { id },
-        });
-        user.update({
-            active: req.body.active
-        });
-        await user.save();
-        return res.json(user)
-    } catch (error) {
-        return res.status(500).json({ message: error.message });
-    }
-}
 
 //Obtener las estaciones asignadas a este usuario
 export const getUserStations = async (req, res) => {
