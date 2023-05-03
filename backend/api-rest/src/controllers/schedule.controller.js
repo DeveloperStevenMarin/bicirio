@@ -23,7 +23,6 @@ export const createSchedule = async (req, res) => {
             assign_out_time,
             break_time,
             userID
-
         });
         res.json(newSchedule);
     } catch (error) {
