@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { removeLoggedUser } from "../../features/users/loggedUserSlice";
 import { API_OUT_TIME_URL } from "../../config/config";
+import WorkingArea from "../WorkingArea/WorkingArea";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -47,22 +48,7 @@ export default function Home() {
   }
   if (loggedUser.profile < 2) {
     return (
-      <div className="home-content">
-        <button className="btn--logout" onClick={() => logout()}>
-          <BiLogOut />
-        </button>
-        <div className="content">
-          <div className="title">Área de trabajo</div>
-          <p>
-            {loggedUser.name1} {loggedUser.surname1}
-          </p>
-          <ul>
-            <li>Uno</li>
-            <li>Dos</li>
-            <li>Tres</li>
-          </ul>
-        </div>
-      </div>
+     <WorkingArea/>
     );
   } else {
     return (
