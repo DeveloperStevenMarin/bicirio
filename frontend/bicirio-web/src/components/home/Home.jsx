@@ -16,11 +16,11 @@ export default function Home() {
   useEffect(() => {
     if (!loggedUser) {
       navigate("../");
-    // } else if (loggedUser.profile <= 0) {
-    //   dispatch(removeLoggedUser(null));
-    //   alert("Usted no es admin");
-    //   navigate("../");
-    //
+      // } else if (loggedUser.profile <= 0) {
+      //   dispatch(removeLoggedUser(null));
+      //   alert("Usted no es admin");
+      //   navigate("../");
+      //
     }
     document.title = `Bicirio`;
   }, []);
@@ -47,9 +47,7 @@ export default function Home() {
     <></>;
   }
   if (loggedUser.profile < 2) {
-    return (
-     <WorkingArea/>
-    );
+    return <WorkingArea />;
   } else {
     return (
       <div className="home-content">

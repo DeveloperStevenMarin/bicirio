@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import "./AddUser.css";
 import { BiArrowBack } from "react-icons/bi";
+import { API_USER_URL } from "../../config/config";
 
-const createUserUrl = "http://localhost:3001/user";
+const createUserUrl = API_USER_URL;
 
 export default function AddUser() {
   const [register, setRegister] = useState({});
