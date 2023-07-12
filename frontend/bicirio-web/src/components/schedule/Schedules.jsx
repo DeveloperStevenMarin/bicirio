@@ -1,22 +1,18 @@
 import { API_SCHEDULE_URL } from "../../config/config";
-import MenuList from "../general/MenuList";
+import MenuList from "../general/MenuList/MenuList";
 import { useNavigate } from "react-router-dom";
-import { BiArrowBack } from "react-icons/bi";
 import { removeLoggedUser } from "../../features/users/loggedUserSlice";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useState, useEffect } from "react";
 import Loading from "../general/Loading/Loading";
-import ScheduleList from "./ScheduleList";
+import ScheduleList from "./ScheduleList/ScheduleList";
 
 export default function Schedules() {
-  let [dataIsLoaded, setDataIsLoaded] = useState(false);
+  const [dataIsLoaded, setDataIsLoaded] = useState(false);
   const loggedUser = useSelector((state) => state.Store.loggedUser.data);
   const [scheduleList, setScheduleList] = useState([]);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const back = async () => {
-    navigate("../");
-  };
   useEffect(() => {
     if (!loggedUser) {
       navigate("../");
@@ -44,11 +40,8 @@ export default function Schedules() {
   } else {
     return (
       <div className="home-content">
-        <button className="btn--back" onClick={() => back()}>
-          <BiArrowBack />
-        </button>
         <MenuList />
-        <ScheduleList scheduleList={scheduleList}/>
+        <ScheduleList scheduleList={scheduleList} />
       </div>
     );
   }

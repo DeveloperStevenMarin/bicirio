@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./Stations.css";
-import { BiArrowBack } from "react-icons/bi";
 import { API_STATION_URL } from "../../config/config";
-import MenuList from "../general/MenuList";
-import StationList from "./StationList";
+import MenuList from "../general/MenuList/MenuList";
+import StationList from "./stationList/StationList";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { removeLoggedUser } from "../../features/users/loggedUserSlice";
@@ -38,9 +37,6 @@ export default function Station() {
       });
   }, []);
 
-  const back = async () => {
-    navigate("../");
-  };
 
   if (!dataIsLoaded) {
     return (
@@ -49,9 +45,6 @@ export default function Station() {
   } else {
     return (
       <div className="home-content">
-        <button className="btn--back" onClick={() => back()}>
-          <BiArrowBack />
-        </button>
         <MenuList />
         <StationList stationList={stationList} />
       </div>

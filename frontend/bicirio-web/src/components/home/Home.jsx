@@ -1,34 +1,32 @@
-import React, { useEffect, useState } from "react";
-import "./Home.css";
+import React, { useEffect } from "react";
 import { BiLogOut } from "react-icons/bi";
-import MenuList from "../general/MenuList";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { removeLoggedUser } from "../../features/users/loggedUserSlice";
 import { API_OUT_TIME_URL } from "../../config/config";
+import MenuList from "../general/MenuList/MenuList";
 import WorkingArea from "../WorkingArea/WorkingArea";
 
 export default function Home() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
   const loggedUser = useSelector((state) => state.Store.loggedUser.data);
+
   useEffect(() => {
     if (!loggedUser) {
       navigate("../");
-      // } else if (loggedUser.profile <= 0) {
-      //   dispatch(removeLoggedUser(null));
-      //   alert("Usted no es admin");
-      //   navigate("../");
-      //
     }
-    document.title = `Bicirio`;
-  }, []);
+    document.title = "Bicirio";
+  }, [loggedUser, navigate]);
+
   const logout = async () => {
-    out_time(loggedUser.id, loggedUser.schedule);
+    if (loggedUser) {
+      out_time(loggedUser.id, loggedUser.schedule);
+    }
     dispatch(removeLoggedUser(null));
     navigate("../");
   };
+
   const out_time = async (userId, scheduleID) => {
     await fetch(API_OUT_TIME_URL, {
       method: "POST",
@@ -44,15 +42,17 @@ export default function Home() {
   };
 
   if (!loggedUser) {
-    <></>;
-  }
-  if (loggedUser.profile < 2) {
+    return null;
+  } else if (!loggedUser.profile) {
+    logout();
+    return null;
+  } else if (loggedUser.profile < 2) {
     return <WorkingArea />;
   } else {
     return (
       <div className="home-content">
         <button className="btn--logout" onClick={() => logout()}>
-          <BiLogOut />
+          <BiLogOut fill="white" />
         </button>
         <MenuList />
         <div className="content">

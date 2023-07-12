@@ -1,0 +1,14 @@
+
+.add-schedule-btn-cancel{
+    background-color: rgb(195, 60, 101);
+    border-radius: 12px;
+    border: 0;
+    box-sizing: border-box;
+    color: #eee;
+    cursor: pointer;
+    font-size: 18px;
+    height: 50px;
+    outline: 0;
+    text-align: center;
+    width: 100%;
+}

@@ -1,0 +1,31 @@
+.schedule-list{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-evenly;
+}
+.schedule-section{
+    width: 650px
+}
+
+.schedule-list-item--userID{
+    width: 150px;
+    justify-content: center;
+}
+.schedule-list-item--in-time{
+    width: 140px;
+    display: flex;
+    justify-content: center;
+}
+
+.schedule-list-item--out-time{
+    width: 120px;
+    display: flex;
+    justify-content: center;
+}
+
+.schedule-list-item--update{
+    width: 110px;
+    display: flex;
+    justify-content: center;
+}

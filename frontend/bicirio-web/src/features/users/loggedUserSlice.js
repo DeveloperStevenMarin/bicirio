@@ -16,7 +16,6 @@ export const loggedUserSlice = createSlice({
         ,
         removeLoggedUser: (state, action) => {
             state.data = (action.payload)
-            console.log(state.data)
         }
     }
 });

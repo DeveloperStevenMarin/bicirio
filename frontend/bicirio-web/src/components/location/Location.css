@@ -1,0 +1,18 @@
+
+.locationContentPicker{
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    margin: 0px;
+    align-items: start;
+    justify-content: center;
+}
+.locationContentPicker li{
+    list-style: none;
+}
+
+.locationPickerElement{
+    width: 200px;
+    height: 100px;
+    margin-top: 8px;
+}

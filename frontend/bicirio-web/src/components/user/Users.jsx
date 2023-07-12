@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./Users.css";
-import { BiArrowBack } from "react-icons/bi";
 import { API_USER_URL } from "../../config/config";
-import MenuList from "../general/MenuList";
-import UserList from "./UserList";
+import MenuList from "../general/MenuList/MenuList";
+import UserList from "./userList/UserList";
 import { useDispatch, useSelector } from "react-redux";
 import { initializeUserList } from "../../features/users/userSlice";
 import { useNavigate } from "react-router-dom";
@@ -23,7 +22,7 @@ export default function User() {
     const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
     setLoggedUser(loggedUser);
     if (!loggedUser) {
-      navigate('/')
+      navigate("/");
     } else if (loggedUser.profile <= 0) {
       console.log(loggedUser);
       alert("Usted no es admin");
@@ -40,23 +39,14 @@ export default function User() {
       .then((json) => {
         dispatch(initializeUserList(json));
         setDataIsLoaded(true);
-        
       });
   }, []);
-  const back = async () => {
-    navigate('../');
-  };
 
   if (!dataIsLoaded) {
-    return (
-      <Loading/>
-    );
+    return <Loading />;
   } else {
     return (
       <div className="home-content">
-        <button className="btn--back" onClick={() => back()}>
-          <BiArrowBack />
-        </button>
         <MenuList />
         <UserList userList={Store.userList.data} />
       </div>

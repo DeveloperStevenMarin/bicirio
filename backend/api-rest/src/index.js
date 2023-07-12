@@ -18,8 +18,16 @@ async function main() {
     try {
         await sequelize.sync({ force: false });
         console.log('Connection has been established successfully.');
-        app.listen(3001);
-        console.log('Server is listening on port: ', 3001);
+
+        const port = 3001 || process.env.PORT ;
+        const host = '0.0.0.0'; // Configura la aplicación para escuchar en todas las interfaces de red
+
+        app.listen(port, host, () => {
+            console.log('Server is listening on', host + ':' + port);
+        });
+        app.get('/', (req, res) => {
+            res.send('Hello world!')
+        })
     } catch (error) {
         console.log('Unable to connect', error);
     }

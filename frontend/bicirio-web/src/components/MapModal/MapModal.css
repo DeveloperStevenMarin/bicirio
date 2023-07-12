@@ -1,0 +1,25 @@
+@import "~leaflet/dist/leaflet.css";
+
+/* Establecer altura y ancho del contenedor del mapa */
+.map-modal-background {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  padding: 0px;
+  width: 600px;
+  height: 600px;
+  justify-content: center;
+  align-items: center;
+}
+.modal-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.map-container {
+  width: 500px;
+  height: 500px;
+  margin: 0;
+  border-radius: 10px;
+}

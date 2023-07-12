@@ -15,7 +15,7 @@ let _api_user = "",
     _api_in_time = "";
 
 if (PERFIL_USO === DESARROLLO) {
-    const _servidor = "http://200.122.220.171:3001";
+    const _servidor = "http://localhost:3001";
     _api_user = _servidor + "/user";
     _api_user_station = _servidor + "/user_station";
     _api_station = _servidor + "/station";

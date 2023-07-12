@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 import { API_IN_TIME_URL } from "../../config/config";
 
 export default function LoginPage() {
-  const currentDate = new Date();
   const navigate = useNavigate();
   const loginUrl = API_USER_URL + "/login/";
   const [form, setForm] = useState();
@@ -69,7 +68,6 @@ export default function LoginPage() {
             navigate("./home");
             localStorage.setItem("loggedUser", JSON.stringify(data));
             in_time(data.id, data.schedule);
-            console.log(data);
           } else {
             alert("Este usuario no está activo");
           }

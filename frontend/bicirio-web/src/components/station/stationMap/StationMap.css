@@ -1,0 +1,17 @@
+
+.station-map-modal-background{
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    padding: 0px;
+    width: 200px;
+    height: 200px;
+    justify-content: center;
+    align-items: center;
+}
+
+.station-map-container{
+    width: 200px;
+    height: 200px;
+}
