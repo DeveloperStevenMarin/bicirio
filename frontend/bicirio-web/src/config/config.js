@@ -1,5 +1,6 @@
 const DESARROLLO = "DESARROLLO";
 const PRODUCCION = "PRODUCCION";
+const PRUEBAS = "PRUEBAS"
 //-------------------------------
 //---- CAMBIAR SEGUN EL USO -----
 //-------------------------------
@@ -13,6 +14,19 @@ let _api_user = "",
     _api_out_time = "",
     _api_location = "",
     _api_in_time = "";
+
+if (PERFIL_USO === PRUEBAS) {
+    const _servidor = "http://10.10.7.124:3001";
+    _api_user = _servidor + "/user";
+    _api_user_station = _servidor + "/user_station";
+    _api_station = _servidor + "/station";
+    _api_service = _servidor + "/service";
+    _api_schedule = _servidor + "/schedule";
+    _api_register = _servidor + "/register";
+    _api_out_time = _servidor + "/out_time";
+    _api_location = _servidor + "/location";
+    _api_in_time = _servidor + "/in_time";
+}
 
 if (PERFIL_USO === DESARROLLO) {
     const _servidor = "http://localhost:3001";

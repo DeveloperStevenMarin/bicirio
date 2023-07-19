@@ -6,13 +6,20 @@
     justify-content: space-evenly;
     margin-top: 30px;
     margin-bottom: 20px;
-    width: 650px;
+    width: 100%;
     gap: 20px;
 }
 
 .schedule-list-title--userID{
     display: flex;
     width: 150px;
+    align-items: center;
+    justify-content: center;
+}
+
+.schedule-list-title--userName{
+    display: flex;
+    width: 300px;
     align-items: center;
     justify-content: center;
 }

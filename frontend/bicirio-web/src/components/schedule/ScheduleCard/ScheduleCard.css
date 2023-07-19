@@ -5,7 +5,7 @@
     justify-content: space-evenly;
 }
 .schedule-section{
-    width: 650px
+    width: 100%
 }
 
 .schedule-list-item--userID{
@@ -28,4 +28,7 @@
     width: 110px;
     display: flex;
     justify-content: center;
+}
+.schedule-list-item--userName{
+    width: 300px;
 }

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { BiPlus } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import ScheduleCard from "../ScheduleCard/ScheduleCard";
@@ -14,7 +13,8 @@ export default function ScheduleList({ scheduleList }) {
       <div className="title">Lista de horarios</div>
       <div className="container container--user">
         <div className="schedule-list-title">
-          <h3 className="schedule-list-title--userID">Operario</h3>
+          <h3 className="schedule-list-title--userName">Operario</h3>
+          <h3 className="schedule-list-title--userID">Cédula</h3>
           <h3 className="schedule-list-title--in-time">Hora entrada</h3>
           <h3 className="schedule-list-title--out-time">Hora salida</h3>
           <h3 className="schedule-list-title--update">Actualizar</h3>
