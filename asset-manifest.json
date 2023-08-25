@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/bicirio/static/css/main.32672358.css",
-    "main.js": "/bicirio/static/js/main.221029d1.js",
+    "main.js": "/bicirio/static/js/main.d88bc6d4.js",
     "index.html": "/bicirio/index.html",
     "main.32672358.css.map": "/bicirio/static/css/main.32672358.css.map",
-    "main.221029d1.js.map": "/bicirio/static/js/main.221029d1.js.map"
+    "main.d88bc6d4.js.map": "/bicirio/static/js/main.d88bc6d4.js.map"
   },
   "entrypoints": [
     "static/css/main.32672358.css",
-    "static/js/main.221029d1.js"
+    "static/js/main.d88bc6d4.js"
   ]
 }
