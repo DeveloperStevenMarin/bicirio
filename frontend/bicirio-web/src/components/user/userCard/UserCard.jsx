@@ -8,7 +8,7 @@ export default function UserCard({ user }) {
   const handleClick = (event) => {
     const selectedUser = event.target.value;
     if (loggedUser.profile >= user.profile) {
-      navigate("/users/update", { state: { selectedUser } });
+      navigate("./update", { state: { selectedUser } });
     } else {
       alert("No es posible modificar un usuario con mayores permisos");
     }

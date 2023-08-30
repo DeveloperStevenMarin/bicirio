@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { API_SCHEDULE_URL, API_USER_URL } from "../../../config/config";
-import { BiArrowBack } from "react-icons/bi";
 import { useSelector } from "react-redux";
-
+import { useNavigate } from "react-router-dom";
 export default function AddSchedule() {
+  const navigate = useNavigate();
   const currentDate = new Date();
   const loggedUser = useSelector((state) => state.Store.loggedUser.data);
   const userList = useSelector((state) => state.Store.userList.data);
@@ -50,7 +50,7 @@ export default function AddSchedule() {
         } else {
           assignShceduleToUser(register.userID, data.id);
           alert("Horario creado con éxito");
-          window.location.href = "./";
+          navigate(-1);
         }
       })
       .catch((err) => {
@@ -67,7 +67,7 @@ export default function AddSchedule() {
   };
 
   const back = () => {
-    window.location.href = "./";
+    navigate(-1);
   };
 
   return (

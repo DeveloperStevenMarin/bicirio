@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import "./AddUser.css";
 import { API_USER_URL } from "../../../config/config";
+import { useNavigate } from "react-router-dom";
 
 const createUserUrl = API_USER_URL;
 
 export default function AddUser() {
+  const navigate = useNavigate();
   const [register, setRegister] = useState({});
   const createUser = async () => {
     fetch(createUserUrl, {
@@ -28,7 +30,7 @@ export default function AddUser() {
           alert(data.message);
         } else {
           alert("Usuario creado con éxito");
-          window.location.href = "../users";
+          navigate(-1);
         }
       })
       .catch((err) => {
@@ -45,7 +47,7 @@ export default function AddUser() {
   };
 
   const back = () => {
-    window.location.href = "../users";
+    navigate(-1);
   };
 
   return (

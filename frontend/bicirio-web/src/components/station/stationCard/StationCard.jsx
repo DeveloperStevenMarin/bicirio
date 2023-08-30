@@ -8,13 +8,13 @@ export default function StationCard({ station }) {
   const navigate = useNavigate();
   const handleClick = (event) => {
     const selectedStation = event.target.value;
-    navigate("/stations/update", { state: { selectedStation } });
+    navigate("./update", { state: { selectedStation } });
   };
 
   const handleClickUserStation = async (event) => {
     const selectedStation = event.target.value;
     setCheckList(await getStationUsers(station.id));
-    navigate("/stations/addUser", { state: { selectedStation } });
+    navigate("./addUser", { state: { selectedStation } });
   };
   const getStationUsers = async (stationID) => {
     const res = await fetch(API_USER_STATION_URL + "/" + stationID, {

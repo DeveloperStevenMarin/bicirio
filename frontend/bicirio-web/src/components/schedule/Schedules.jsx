@@ -15,11 +15,11 @@ export default function Schedules() {
   const dispatch = useDispatch();
   useEffect(() => {
     if (!loggedUser) {
-      navigate("../");
+      navigate(-1);
     } else if (loggedUser.profile <= 0) {
       dispatch(removeLoggedUser(null));
       alert("Usted no es admin");
-      navigate("../");
+      navigate(-1);
     }
     fetch(API_SCHEDULE_URL, {
       method: "GET",

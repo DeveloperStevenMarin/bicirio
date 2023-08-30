@@ -43,7 +43,7 @@ export default function UserDetailsCard() {
   });
 
   const back = async () => {
-    navigate("../users");
+    navigate(-1);
   };
 
   const getScheduleList = async () => {

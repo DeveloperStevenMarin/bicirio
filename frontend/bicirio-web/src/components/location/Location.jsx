@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import MenuList from "../general/MenuList/MenuList";
 
 import Loading from "../general/Loading/Loading";
-import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import MapModal from "../MapModal/MapModal";
 import { API_LOCATION_URL } from "../../config/config";
@@ -17,7 +16,6 @@ export default function Location() {
   const [selectedUser, setSelectedUser] = useState("");
   const users = userList.filter((user) => user.profile < 2);
   const [dataIsLoaded, setDataIsLoaded] = useState(false);
-  const navigate = useNavigate();
   const [locationData, setLocationData] = useState([]);
   const [startTimestamp, setStartTimestamp] = useState();
   const [endTimestamp, setEndTimestamp] = useState();
@@ -71,7 +69,7 @@ export default function Location() {
               <li>
                 <FormControl sx={{ m: 1, minWidth: 120 }}>
                   <InputLabel id="demo-simple-select-helper-label">
-                    Operario: 
+                    Operario:
                   </InputLabel>
                   <Select
                     onChange={handleUserChange}

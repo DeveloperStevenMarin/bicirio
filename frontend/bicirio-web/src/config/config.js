@@ -4,7 +4,7 @@ const PRUEBAS = "PRUEBAS"
 //-------------------------------
 //---- CAMBIAR SEGUN EL USO -----
 //-------------------------------
-const PERFIL_USO = DESARROLLO;
+const PERFIL_USO = PRUEBAS;
 let _api_user = "",
     _api_user_station = "",
     _api_station = "",
@@ -16,7 +16,7 @@ let _api_user = "",
     _api_in_time = "";
 
 if (PERFIL_USO === PRUEBAS) {
-    const _servidor = "http://10.10.7.124:3001";
+    const _servidor = "https://bicirio-backend.fly.dev";
     _api_user = _servidor + "/user";
     _api_user_station = _servidor + "/user_station";
     _api_station = _servidor + "/station";

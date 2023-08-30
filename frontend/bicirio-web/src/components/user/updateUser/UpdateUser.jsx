@@ -20,9 +20,6 @@ export default function UpdateUser() {
   );
   const userToUpdate = JSON.parse(selectedUser.state.selectedUser);
   const updateUserUrl = API_USER_URL + "/" + userToUpdate.id;
-  const back = () => {
-    navigate("../users");
-  };
   const handleSubmit = async () => {
     try {
       await fetch(updateUserUrl, {
@@ -33,7 +30,7 @@ export default function UpdateUser() {
         },
         body: JSON.stringify(register),
       })
-        .then(navigate("../users"))
+        .then(navigate(-1))
         .catch((error) => {
           alert("Por favor verifique los datos:" + error);
         });

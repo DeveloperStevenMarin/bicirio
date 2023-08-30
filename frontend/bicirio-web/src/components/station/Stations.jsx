@@ -17,11 +17,11 @@ export default function Station() {
   const stationList = useSelector((state) => state.Store.stationList.data);
   useEffect(() => {
     if (!loggedUser) {
-      navigate("../");
+      navigate(-1);
     } else if (loggedUser.profile <= 0) {
       dispatch(removeLoggedUser(null));
       alert("Usted no es admin");
-      navigate("../");
+      navigate(-1);
     }
     fetch(API_STATION_URL, {
       method: "GET",

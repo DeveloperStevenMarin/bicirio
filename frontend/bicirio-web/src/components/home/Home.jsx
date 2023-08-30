@@ -14,7 +14,7 @@ export default function Home() {
 
   useEffect(() => {
     if (!loggedUser) {
-      navigate("../");
+      navigate('/bicirio/');
     }
     document.title = "Bicirio";
   }, [loggedUser, navigate]);
@@ -24,7 +24,7 @@ export default function Home() {
       out_time(loggedUser.id, loggedUser.schedule);
     }
     dispatch(removeLoggedUser(null));
-    navigate("../");
+    navigate('/bicirio/');
   };
 
   const out_time = async (userId, scheduleID) => {

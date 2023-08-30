@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "type": "module",
+  "homepage": "https://developerstevenmarin.github.io/bicirio/",
   "scripts": {
     "dev": "npx nodemon src/index.js",
     "start": "npx nodemon src/index.js"
@@ -12,6 +13,7 @@
   "license": "ISC",
   "keywords": [],
   "dependencies": {
+    "gh-pages": "^5.0.0",
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "morgan": "^1.10.0",

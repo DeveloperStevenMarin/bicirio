@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { API_STATION_URL } from "../../../config/config";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+import { useNavigate } from "react-router-dom";
 
 export default function AddStation() {
   const [register, setRegister] = useState({});
   const [selectedLocation, setSelectedLocation] = useState(null);
+  const navigate = useNavigate();
 
   const mapOptions = {
     zoomControl: false, // Desactivar el control de zoom
@@ -36,7 +38,7 @@ export default function AddStation() {
             alert(data.message);
           } else {
             alert("Estacion creada con éxito");
-            window.location.href = "./";
+            navigate(-1);
           }
         })
         .catch((err) => {
@@ -54,7 +56,7 @@ export default function AddStation() {
   };
 
   const back = () => {
-    window.location.href = "./";
+    navigate(-1);
   };
 
   const center = {

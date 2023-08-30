@@ -38,7 +38,7 @@ export default function UpdateStation() {
   const stationToUpdate = JSON.parse(selectedStation.state.selectedStation);
   const updateStationUrl = API_STATION_URL + "/" + stationToUpdate.id;
   const back = () => {
-    navigate("../stations");
+    navigate(-1);
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -52,7 +52,7 @@ export default function UpdateStation() {
         },
         body: JSON.stringify(register),
       })
-        .then(navigate("/stations"))
+        .then(navigate(-1))
         .catch((error) => {
           alert("Por favor verifique los datos:" + error);
         });
