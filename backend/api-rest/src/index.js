@@ -19,7 +19,7 @@ async function main() {
         await sequelize.sync({ force: false });
         console.log('Connection has been established successfully.');
 
-        const port = 3001 || process.env.PORT ;
+        const port = 3005 || process.env.PORT ;
         const host = '0.0.0.0'; // Configura la aplicación para escuchar en todas las interfaces de red
 
         app.listen(port, host, () => {

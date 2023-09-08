@@ -8,6 +8,6 @@ router.post('/user_station', createUserStation);  //Crear relacion de usuario y 
 router.delete('/user_station', deleteUserStation);   //Eliminar relacion de usuario y estacion
 router.get('/user_station', getUserStation); //Obtener todas las estaciones asignadas
 router.post('/user_station/:stationID', getUserStationByStation);  //Obtener la estacion por el ID
-router.post('/user_station/:userID', getUserStationByUser);  //Obtener la estacion por el ID de usuario
+router.get('/user_station/:userID', getUserStationByUser);  //Obtener la estacion por el ID de usuario
 
 export default router;

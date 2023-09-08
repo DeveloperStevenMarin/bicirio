@@ -11,7 +11,6 @@ export default function Home() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const loggedUser = useSelector((state) => state.Store.loggedUser.data);
-
   useEffect(() => {
     if (!loggedUser) {
       navigate('/bicirio/');
@@ -43,10 +42,10 @@ export default function Home() {
 
   if (!loggedUser) {
     return null;
-  } else if (!loggedUser.profile) {
-    logout();
-    return null;
-  } else if (loggedUser.profile < 2) {
+    } else if (!loggedUser.id) {
+      logout();
+      return null;
+    } else if (loggedUser.profile < 2) {
     return <WorkingArea />;
   } else {
     return (
