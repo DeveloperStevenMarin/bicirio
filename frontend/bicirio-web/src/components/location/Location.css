@@ -1,18 +1,44 @@
-
-.locationContentPicker{
-    display: flex;
-    flex-direction: row;
-    gap: 30px;
-    margin: 0px;
-    align-items: start;
-    justify-content: center;
+.locationContentPicker {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  margin: 0px;
+  align-items: start;
+  justify-content: center;
 }
-.locationContentPicker li{
-    list-style: none;
+.locationContentPicker li {
+  list-style: none;
 }
 
-.locationPickerElement{
-    width: 200px;
-    height: 100px;
-    margin-top: 8px;
+.locationPickerElement {
+  width: 200px;
+  height: 100px;
+  margin-top: 8px;
+}
+.custom-select-location div {
+  color: #ffffff;
+}
+.locationPickerElement div div {
+  color: white;
+}
+.locationPickerElement div div div svg {
+  fill: white;
+}
+.locationPickerElement div div fieldset {
+  border-color: white;
+}
+.locationPickerElement div label {
+  color: white;
+}
+
+.locationPickerElement--user div label {
+  color: white;
+}
+
+.locationPickerElement--user div div fieldset {
+  border-color: white;
+}
+
+.locationPickerElement--user div div svg {
+  fill: white;
 }

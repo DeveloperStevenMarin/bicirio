@@ -11,25 +11,25 @@ export default function MenuList() {
       <div className="wrapper">
         <ul>
           <li>
-            <Link to={"/bicirio/home"}>Inicio</Link>
+            <Link to={"/home"}>Inicio</Link>
           </li>
           <li>
-            <Link to={"/bicirio/users"}>Usuarios</Link>
+            <Link to={"/users"}>Usuarios</Link>
           </li>
           <li>
-            <Link to={"/bicirio/services"}>Servicios</Link>
+            <Link to={"/services"}>Servicios</Link>
           </li>
           <li>
-            <Link to={"/bicirio/location"}>Ubicaciones</Link>
+            <Link to={"/location"}>Ubicaciones</Link>
           </li>
           <li>
-            <Link to={"/bicirio/registers"}>Registros</Link>
+            <Link to={"/registers"}>Registros</Link>
           </li>
           <li>
-            <Link to={"/bicirio/stations"}>Estaciones</Link>
+            <Link to={"/stations"}>Estaciones</Link>
           </li>
           <li>
-            <Link to={"/bicirio/schedules"}>Horarios</Link>
+            <Link to={"/schedules"}>Horarios</Link>
           </li>
         </ul>
       </div>

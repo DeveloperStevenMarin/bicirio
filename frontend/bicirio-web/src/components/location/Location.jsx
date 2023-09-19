@@ -66,7 +66,7 @@ export default function Location() {
           <MenuList />
           <div className="content">
             <ul className="locationContentPicker">
-              <li>
+              <li className="locationPickerElement--user">
                 <FormControl sx={{ m: 1, minWidth: 120 }}>
                   <InputLabel id="demo-simple-select-helper-label">
                     Operario:
@@ -75,6 +75,7 @@ export default function Location() {
                     onChange={handleUserChange}
                     value={selectedUser}
                     label="Operario"
+                    className="custom-select-location"
                   >
                     {users.map((user, index) => (
                       <MenuItem value={user.id} key={index}>

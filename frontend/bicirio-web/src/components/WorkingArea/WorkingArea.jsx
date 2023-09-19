@@ -204,7 +204,7 @@ export default function WorkingArea() {
   return (
     <div className="home-content">
       <button className="btn--logout" onClick={() => logout()}>
-        <BiLogOut />
+          <BiLogOut fill="white" />
       </button>
       <div className="content">
         <div className="title">Área de trabajo</div>
